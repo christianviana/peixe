@@ -1,5 +1,4 @@
-var paginaDeDados = "lerDados";
-var pagLigaLed = "ligarLed";
+var paginaDeDados = "ciclos";
 var refeicoes;
 
 
@@ -34,72 +33,31 @@ function insereLinhas(result) {
 	var qtd = refeicoes.Ciclos.length;
 
 	for (var numLinha = 0; numLinha < qtd; numLinha++) {
-		if (pagina.Dispo[numLinha].LED != '-')
-			$("#interruptoresRow").append(criaInterruptor(pagina.Dispo[numLinha]));
-		if (pagina.Dispo[numLinha].ADC1 != '-')
-			$("#temperaturaRow").append(criaInfoTemperatura(pagina.Dispo[numLinha]));
-		if (pagina.Dispo[numLinha].ADC2 != '-')
-			$("#umidadeRow").append(criaInfoUmidade(pagina.Dispo[numLinha]));
+		$("#tabelaCiclos").append(criaCiclo(refeicoes.Ciclos[numLinha]));
 	}
 }
 
-function criaInterruptor(dispo) {
+function criaCiclo(ciclo) {
 
-	var txtInterruptor = `<div id=Botao_${dispo.SEQ} class="col-xs- icone">`;
-	// LED
-	if (dispo.LED == '1')
-		txtInterruptor += `<div class="bolaComum bolaFundoVerde" id=EspButton_${dispo.SEQ} >`;
-	else
-		txtInterruptor += `<div class="bolaComum bolaFundoVermelha" id=EspButton_${dispo.SEQ} >`;
+/**
+<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+				<div class="d-flex w-100 justify-content-between align-items-center">
+					<h5 class="mb-1">Almoço</h5>
+					<small>10:30</small>
+					<span class="badge badge-primary badge-pill">14</span>
+				</div>
+			</a>
+ */
 
-	txtInterruptor += '</div>';
-	txtInterruptor += '<div>';
-	txtInterruptor += '<label class="rocker rocker-small">';
-	txtInterruptor += '<input type="checkbox"';
-
-	if (dispo.LED == '1')
-		txtInterruptor += ' checked=true ';
-
-	txtInterruptor += `onclick="this.disabled=true;muda(${dispo.SEQ})">`;
-	txtInterruptor += '<span class="switch-left">I</span>';
-	txtInterruptor += '<span class="switch-right">O</span>';
-	txtInterruptor += '</label>	';
-	// Local
-	txtInterruptor += '<p class="rotulo">';
-	txtInterruptor += ` ${dispo.LOCAL}`;
-	txtInterruptor += ' </p>';
-	txtInterruptor += '</div>';
-	txtInterruptor += '</div>';
-	return txtInterruptor;
-
-}
-
-function criaInfoTemperatura(dispo) {
-	var txtInfoTemperatura = '<div class="col-xs- icone">';
-	txtInfoTemperatura += '<i class="fas fa-thermometer-full fa-2x"></i>';
-	txtInfoTemperatura += '<span>';
-	txtInfoTemperatura += ` ${dispo.ADC1}&#176;`;
-	txtInfoTemperatura += '</span>';
-	// Local
-	txtInfoTemperatura += '<p class="rotulo">';
-	txtInfoTemperatura += ` ${dispo.LOCAL}`;
-	txtInfoTemperatura += ' </p>';
-	txtInfoTemperatura += '</div>';
-	return txtInfoTemperatura;
-}
-
-function criaInfoUmidade(dispo) {
-	var txtInfoUmidade = '<div class="col-xs- icone">';
-	txtInfoUmidade += '<i class="fas fa-tint fa-2x"></i>';
-	txtInfoUmidade += '<span>';
-	txtInfoUmidade += ` ${dispo.ADC2}%`;
-	txtInfoUmidade += '</span>';
-	// Local
-	txtInfoUmidade += '<p class="rotulo">';
-	txtInfoUmidade += ` ${dispo.LOCAL}`;
-	txtInfoUmidade += ' </p>';
-	txtInfoUmidade += '</div>';
-	return txtInfoUmidade;
+	var txtCiclo = '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">';
+	txtCiclo += '<div class="d-flex w-100 justify-content-between align-items-center">';
+	txtCiclo += '<h5 class="mb-1">Almoço</h5>';
+	txtCiclo += '<small>10:30</small>';
+	txtCiclo += '<span class="badge badge-primary badge-pill">14</span>';
+//	txtCiclo += `onclick="this.disabled=true;muda(${dispo.SEQ})">`;
+	txtCiclo += '</div>';
+	txtCiclo += '</a>';
+	return txtCiclo;
 }
 
 
