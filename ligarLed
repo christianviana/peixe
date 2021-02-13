@@ -1,1 +1,10 @@
-{"Dispo":[{"SEQ":3,"MAC":2484121542,"LOCAL":"QuartoC","ESP_MOD":"ESP8266","ESTADO":1,"BOTAO":1,"LED":0,"ADC1":29,"ADC2":80,"SETOR":"Ser"}]}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+Hello people
+</body>
+</html>
