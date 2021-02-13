@@ -13,7 +13,7 @@ function limpaECarregaTabela() {
 	console.log(dataFormatada() + 'carregando dados...');
 	$.ajax({
 		url: paginaDeDados, success: function (result) {
-			$("#tabelaCiclos").html("");			
+			//$("#tabelaCiclos").html("");			
 			insereLinhas(result);
 		}, cache: false
 	});
@@ -26,15 +26,26 @@ function limpaECarregaTabela() {
 //}
 
 function insereLinhas(result) {
-
 	refeicoes = JSON.parse(result);
 	var qtd = refeicoes.Ciclos.length;
+	
+	$("#tabelaCiclos").append("<button type='button' class='list-group-item list-group-item-action' data-toggle='modal'	data-target='#exampleModal' data-whatever='@mdo'>Novo</button>");
+	
 	for (var numLinha = 0; numLinha < qtd; numLinha++) {
 		$("#tabelaCiclos").append(criaCiclo(refeicoes.Ciclos[numLinha]));
-	}
+	}	
 }
 
 function criaCiclo(ciclo) {
+	
+/**
+
+		<button type="button" class="list-group-item list-group-item-action" data-toggle="modal"
+			data-target="#exampleModal" data-whatever="@mdo">Novo</button>								
+
+
+ */	
+	
 	var txtCiclo = '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">';
 	txtCiclo += '<div class="d-flex w-100 justify-content-between align-items-center">';
 	txtCiclo += `<h5 class="mb-1">${ciclo.NOME}</h5>`;
