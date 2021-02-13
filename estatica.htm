@@ -1,103 +1,193 @@
 <!DOCTYPE html>
-<html >
+<html>
+
 <head>
-	<title>Painel de Controle Interno Mesh</title>
+
+	<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+
+	<title>Painel de Controle Mexerico</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 	<meta http-equiv="Pragma" content="no-cache" />
 	<meta http-equiv="Expires" content="0" />
-	
-	<!--=======================(  INCLUI FOLHA DE Jquery  )=====================-->		
-	<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
-	
-	<!--=======================(  INCLUI FOLHA DE SCRIPT  )=====================-->	
-	<!-- <script type="text/javascript" src="javascript.js"></script> -->
-	
-	<!--====================(  INCLUI BIBLIOTECA BOOTSTRAP )====================-->
-	<script type="text/javascript" src="bootstrap.min.js"></script>
-	
+
 	<!--================( FOLHA DE ESTILO CSS PARA O BOOTSTRAP )================-->
-	<link href="bootstrap.min.css" rel="stylesheet">
-	
+	<link href="bootstrap-4.1.3.min.css" rel="stylesheet">
 	<!--=====================(    FOLHA DE ESTILO CSS     )=====================-->
 	<link href="estilo.css" rel="stylesheet">
-	
+	<link href="estiloSwitch.css" rel="stylesheet">
+	<link href="roundSwitch.css" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/c72e8f35d2.js"></script>
 </head>
 
-<body>	
+<body>
 
-<div class="container-fluid">
-<h2>Dispositivos da rede Mesh</h2>
+	<div class="container">
+		<h3> Painel Mexerico </h3>
+		<p>Aqui estão listados os todos os dispositivos da sua instalação Mexerico.</p>
+		<!-- Nav pills -->
+		<ul class="nav nav-tabs">
+			<li class="nav-item active">
+				<a class="nav-link active" data-toggle="pill" href="#interruptores">
+					<i class="fas fa-toggle-on"></i>
+					<span class="small"> On/Off</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-toggle="pill" href="#temperatura">
+					<i class="fas fa-thermometer-full"></i>
+					<span class="small"> Temperatura</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-toggle="pill" href="#umidade">
+					<i class="fas fa-tint"></i>
+					<span class="small"> Umidade</span>
+				</a>
+			</li>
 
-	<!-- Nav pills -->
-	<ul class="nav nav-pills" >
-	  <li class="nav-item">
-	    <a class="nav-link active" data-toggle="pill" href="#interruptores">Interruptores</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" data-toggle="pill" href="#temperatura">Temperatura</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" data-toggle="pill" href="#pressao">Pressão</a>
-	  </li>
-	</ul>
+		</ul>
 
-	<!-- Tab panes -->
-	<div class="tab-content container">
-		<div class="tab-pane container active" id="interruptores">
-	 
-			
-				<div class="row">
+		<!-- Tab panes -->
+		<div class="tab-content">
+			<div class="tab-pane active painel" id="interruptores">
+				<p> </p>
+				<h4>Interruptores</h4>
+				<p>Nesta seção são listados os interruptores.</p>
 
-		    		<div class=".col-sm-">
-						
-						<p>Quarto das crianças</p>
-						<label class="rocker rocker-small">	    
-					    <input type="checkbox">    
+				<div class="row linha" id="interruptoresRow">
+
+					<div class="col-xs- icone">
+						<button class="btn btn-dark botao" id="teste" onclick="this.disabled=true;$('#teste').toggleClass('ledPiscando');">
+							<i class="fas fa-lightbulb"></i>
+						</button>
+						<p class="rotulo" id=pLocal_1>Quarto 1</p>
+					</div>
+					
+					<div class="col-xs- icone">
+						<button  id="btd" class="botaoImagem" onclick="this.disabled=true;$('#btd').toggleClass('ledPiscandoBotao');">
+						</button>							
+						<p class="rotulo" id=pLocal_1>Quarto 2</p>
+					</div>
+					
+					
+					<div class="col-xs- icone">
+					  <label class="rocker rocker-small">
+					    <input type="checkbox" onclick="$('#testew').toggleClass('switchPiscando');">
+					    <span  id="testew" class="switch-left">I</span>
+					    <span class="switch-right">O</span>
+					  </label>					
+					  <p class="rotulo" id=pLocal_1>Quarto 3</p>
+					</div>
+					
+					<div class="col-xs- icone">
+					  <label class="rocker rocker-small">
+					    <input type="checkbox" onclick="$('#teste3').toggleClass('imgPiscando');">
+					    <span class="switch-left bola" id="teste3">I</span>
+					    <span class="switch-right">O</span>
+					  </label>					
+					  <p class="rotulo" id=pLocal_1>Quarto 4</p>
+					</div>
+					
+					<div class="col-xs- icone">
+					  <div class="bola" id="teste5" >
+					  </div>						
+					  <div>
+					  <label class="rocker rocker-small">
+					    <input type="checkbox" onclick="$('#teste5').toggleClass('imgPiscando');">
 					    <span class="switch-left">I</span>
-					    <!-- <span class="switch-left"> <img src="http://i.stack.imgur.com/e2S63.png"></span>  -->
 					    <span class="switch-right">O</span>
-					  	</label>
-
-						
-		    		</div>
-		    		
-		    		
-					<div class=".col-sm-">
-						<p>Sala</p>
-						<label class="rocker rocker-small">
-					    <input type="checkbox">    
-					    <span class="switch-left">Yes</span>					    
-					    
-					  	</label>
-		    		</div>
-
-					<div class=".col-sm-">
-						<p>Cozinha</p>
-						<label class="rocker rocker-small">						
-					    <input type="checkbox">    
-					    <span class="switch-left">I</span>					    
+					  </label>					
+					  <p class="rotulo" id=pLocal_1>Quarto 5</p>
+					  </div>
+					</div>
+					
+									
+					<div class="col-xs- icone">
+					  <span class="btn btn-info botao" id="teste6">
+							<i class="fas fa-lightbulb"></i>
+					  </span>
+					  <div>
+					  <label class="rocker rocker-small">
+					    <input type="checkbox" onclick="$('#teste6').toggleClass('ledPiscando');">
+					    <span  id="testew" class="switch-left">I</span>
 					    <span class="switch-right">O</span>
-					    <span class="badge"/> 
-					  	</label>				
-		    		</div>
+					  </label>					
+					  <p class="rotulo" id=pLocal_1>Quarto 6</p>
+					  </div>
+					</div>
+					
+				</div>
+			</div>
 
-		    		
-	    		</div>
-		</div>
-	 
-	 	<div class="tab-pane container fade" id="temperatura">
-	    		
-	    </div>
-	 
-	 	<div class="tab-pane container fade" id="pressao">
-	  
-		</div>
-	
+			<div class="tab-pane fade painel" id="temperatura">
+				<p> </p>
+				<h4>Temperatura</h4>
+				<p>Nesta seção estão listados os sensores de temperatura.</p>
+				<div class="row linha" id="temperaturaRow">
+
+					<div class="col-xs- temperaturaIcon">
+						<i class="fas fa-thermometer-full fa-2x"></i>
+						<span id=ESP_1>
+							22
+						</span>
+						<p class="temperaturaLabel" id=pLocal_1>
+							Quarto 3
+						</p>
+					</div>
+
+					<div class="col-xs- temperaturaIcon">
+						<i class="fas fa-thermometer-full fa-2x"></i>
+						<span id=ESP_1>
+							22
+						</span>
+						<p class="temperaturaLabel" id=pLocal_1>
+							Quarto 1
+						</p>
+					</div>
+
+					<div class="col-xs- temperaturaIcon">
+						<i class="fas fa-thermometer-full fa-2x"></i>
+						<span id=ESP_1>
+							22&#176;
+						</span>
+						<p class="temperaturaLabel" id=pLocal_1>
+							Quarto 2
+						</p>
+					</div>
+
+
+				</div>
+			</div>
+
+			<div class="tab-pane fade painel painelUmidade" id="umidade">
+				<p> </p>
+				<h4>Umidade</h4>
+				<p>Nesta seção estão listados os sensores de umidade.</p>
+				<div class="row linha" id="umidadeRow">
+				
+					<div class="col-xs- icone">
+					<div class=round><input type=checkbox id=onoff name=onoff />
+					<div class=back><label class=but for=onoff><span class=on>I</span><span class=off>0</span></label></div></div>
+					 <p class="rotulo" id=pLocal_1>Quarto 6</p>
+					</div>
+				
+				
+				
+				</div>
+			
+			</div>
+
 	</div>
-	
-</div>	
-	
+</div>
+	<!--=======================(  INCLUI BIBLIOTECA Jquery  )=====================-->
+	<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+
+	<!--====================(  INCLUI BIBLIOTECA BOOTSTRAP )====================-->
+	<script type="text/javascript" src="bootstrap-4.1.3.min.js"></script>
+
+
 </body>
+
 </html>
