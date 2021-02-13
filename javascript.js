@@ -1,5 +1,6 @@
 var paginaDeDados = "lerDados";
 var pagLigaLed = "ligarLed";
+var refeicoes;
 
 
 // carrega primeira vez e configura página para recarregar automaticamente a cada 20s
@@ -29,8 +30,8 @@ function limpaECarregaTabela() {
 
 function insereLinhas(result) {
 
-	var pagina = JSON.parse(result);
-	var qtd = pagina.Dispo.length;
+	refeicoes = JSON.parse(result);
+	var qtd = refeicoes.Ciclos.length;
 
 	for (var numLinha = 0; numLinha < qtd; numLinha++) {
 		if (pagina.Dispo[numLinha].LED != '-')
