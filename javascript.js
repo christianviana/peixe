@@ -38,22 +38,11 @@ function insereLinhas(result) {
 }
 
 function criaCiclo(ciclo) {
-
-/**
-<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-				<div class="d-flex w-100 justify-content-between align-items-center">
-					<h5 class="mb-1">Almoço</h5>
-					<small>10:30</small>
-					<span class="badge badge-primary badge-pill">14</span>
-				</div>
-			</a>
- */
-
 	var txtCiclo = '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">';
 	txtCiclo += '<div class="d-flex w-100 justify-content-between align-items-center">';
-	txtCiclo += `<h5 class="mb-1">${ciclo.nome}</h5>`;
-	txtCiclo += `<small>${ciclo.hora}</small>`;
-	txtCiclo += `<span class="badge badge-primary badge-pill">${ciclo.qtd}</span>`;
+	txtCiclo += `<h5 class="mb-1">${ciclo.NOME}</h5>`;
+	txtCiclo += `<small>${ciclo.HORA}</small>`;
+	txtCiclo += `<span class="badge badge-primary badge-pill">${ciclo.QTD}</span>`;
 	txtCiclo += '</div>';
 	txtCiclo += '</a>';
 	return txtCiclo;

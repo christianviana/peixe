@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
     <wb-module deploy-name="testeStaticWeb">
         <wb-resource deploy-path="/" source-path="/WebContent"/>
+        <dependent-module deploy-path="/" handle="module:/org.jboss.ide.eclipse.archives.webtools.filesets.vcf.FilesetComponentResolver/path=%2Fpeixes&amp;includes=**&amp;excludes=">
+            <dependency-type>consumes</dependency-type>
+        </dependent-module>
         <property name="context-root" value="testeStaticWeb"/>
     </wb-module>
 </project-modules>

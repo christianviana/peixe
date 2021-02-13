@@ -3,6 +3,7 @@
 	<name>peixes</name>
 	<comment></comment>
 	<projects>
+		<project>peixes</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
