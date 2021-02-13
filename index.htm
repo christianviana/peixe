@@ -62,10 +62,8 @@
 								<input type="time" class="form-control" id="message-text"></input>
 							</div>
 							<div class="form-group">
-
 								<label for="refeicao-qtd" class="col-form-label">Quantidade: <span
 										id="refeicao-output"></span></label>
-
 								<input type="range" min="1" max="10" value="2" class="form-control"
 									id="refeicao-qtd"></input>
 							</div>
@@ -82,15 +80,11 @@
 				var slider = document.getElementById("refeicao-qtd");
 				var output = document.getElementById("refeicao-output");
 				output.innerHTML = slider.value;
-
 				slider.oninput = function () {
 					output.innerHTML = this.value;
 				}
 			</script>
-
 		</div>
-
-
 	</div>
 
 	<!--=======================(  INCLUI BIBLIOTECA Jquery  )=====================-->

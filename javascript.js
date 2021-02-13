@@ -13,9 +13,7 @@ function limpaECarregaTabela() {
 	console.log(dataFormatada() + 'carregando dados...');
 	$.ajax({
 		url: paginaDeDados, success: function (result) {
-			$("#interruptoresRow").html("");
-			$("#temperaturaRow").html("");
-			$("#umidadeRow").html("");
+			$("#tabelaCiclos").html("");			
 			insereLinhas(result);
 		}, cache: false
 	});
@@ -31,7 +29,6 @@ function insereLinhas(result) {
 
 	refeicoes = JSON.parse(result);
 	var qtd = refeicoes.Ciclos.length;
-
 	for (var numLinha = 0; numLinha < qtd; numLinha++) {
 		$("#tabelaCiclos").append(criaCiclo(refeicoes.Ciclos[numLinha]));
 	}
