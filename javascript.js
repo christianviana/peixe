@@ -51,10 +51,9 @@ function criaCiclo(ciclo) {
 
 	var txtCiclo = '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">';
 	txtCiclo += '<div class="d-flex w-100 justify-content-between align-items-center">';
-	txtCiclo += '<h5 class="mb-1">Almoço</h5>';
-	txtCiclo += '<small>10:30</small>';
-	txtCiclo += '<span class="badge badge-primary badge-pill">14</span>';
-//	txtCiclo += `onclick="this.disabled=true;muda(${dispo.SEQ})">`;
+	txtCiclo += `<h5 class="mb-1">${ciclo.nome}</h5>`;
+	txtCiclo += `<small>${ciclo.hora}</small>`;
+	txtCiclo += `<span class="badge badge-primary badge-pill">${ciclo.qtd}</span>`;
 	txtCiclo += '</div>';
 	txtCiclo += '</a>';
 	return txtCiclo;
