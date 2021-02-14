@@ -8,13 +8,18 @@ $(document).ready(function () {
 	
 	$('#modalRefeicao').on('show.bs.modal', function (event) {
   		var button = $(event.relatedTarget) // Button that triggered the modal
+		var titulo = button.data('titulo')
 		var nomeRefeicao = button.data('nome-refeicao')  		
-		var recipient = button.data('recipient') // Extract info from data-* attributes
+		var qtdRefeicao = button.data('qtd-refeicao')
+		var horaRefeicao = button.data('hora-refeicao') // Extract info from data-* attributes
 		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
   		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
   		var modal = $(this)
-  		modal.find('.modal-title').text(nomeRefeicao)
-  		modal.find('.modal-body input').val(nomeRefeicao)
+  		modal.find('.modal-title').text(titulo)
+		modal.find('#refeicao-nome').val(nomeRefeicao)	
+  		modal.find('#refeicao-hora').val(horaRefeicao)
+		modal.find('#refeicao-qtd').val(qtdRefeicao)
+		modal.find('#refeicao-output').text(qtdRefeicao)		
 	})
 	
 	//setInterval(function () { limpaECarregaTabela(); }, 20000);
@@ -35,9 +40,7 @@ function limpaECarregaTabela() {
 function insereLinhas(result) {
 	refeicoes = JSON.parse(result);
 	var qtd = refeicoes.Ciclos.length;
-	
-	$("#tabelaCiclos").append("<a href='#' class='list-group-item list-group-item-action' data-toggle='modal'	data-target='#modalRefeicao' data-whatever='@mdo'>Novo</a>");
-	
+
 	for (var numLinha = 0; numLinha < qtd; numLinha++) {
 		$("#tabelaCiclos").append(criaCiclo(refeicoes.Ciclos[numLinha]));
 	}	
@@ -45,7 +48,7 @@ function insereLinhas(result) {
 
 function criaCiclo(ciclo) {	
 	var txtCiclo = "<a href='#' class='list-group-item list-group-item-action flex-column align-items-start' ";
-	txtCiclo += `data-toggle='modal' data-target='#modalRefeicao' data-nome-refeicao=${ciclo.NOME}>`;
+	txtCiclo += `data-toggle='modal' data-target='#modalRefeicao' data-nome-refeicao=${ciclo.NOME} data-titulo=${ciclo.NOME} data-hora-refeicao=${ciclo.HORA} data-qtd-refeicao=${ciclo.QTD}>`;
 	txtCiclo += '<div class="d-flex w-100 justify-content-between align-items-center">';
 	txtCiclo += `<h5 class="mb-1">${ciclo.NOME}</h5>`;
 	txtCiclo += `<small>${ciclo.HORA}</small>`;
