@@ -59,13 +59,16 @@ function criaLinhaCiclo(ciclo) {
 	return txtCiclo;
 }
 
-function novoCiclo(nome, hora, qtd) {
+function novoCiclo(elemento) {
 	
 //	refeicoes.Ciclos.
 	//$("#tabelaCiclos").html("");			
 //	insereLinhas(result);
 	//var ciclo = new JSON();
-	//ciclo.append
+	//ciclo.append	
+	
+	alert('Inserir elemento novo');
+	
 }
 	
 // Usa AJAX pra só recarregar o botão que mudou
