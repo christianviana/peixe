@@ -42,13 +42,14 @@ function insereLinhas(result) {
 	var qtd = refeicoes.Ciclos.length;
 
 	for (var numLinha = 0; numLinha < qtd; numLinha++) {
-		$("#tabelaCiclos").append(criaCiclo(refeicoes.Ciclos[numLinha]));
+		$("#tabelaCiclos").append(criaLinhaCiclo(refeicoes.Ciclos[numLinha]));
 	}	
 }
 
-function criaCiclo(ciclo) {	
+function criaLinhaCiclo(ciclo) {	
 	var txtCiclo = "<a href='#' class='list-group-item list-group-item-action flex-column align-items-start' ";
-	txtCiclo += `data-toggle='modal' data-target='#modalRefeicao' data-nome-refeicao=${ciclo.NOME} data-titulo=${ciclo.NOME} data-hora-refeicao=${ciclo.HORA} data-qtd-refeicao=${ciclo.QTD}>`;
+	txtCiclo += "data-dismiss='modal' data-toggle='modal' data-target='#modalRefeicao'";
+	txtCiclo += `data-nome-refeicao=${ciclo.NOME} data-titulo=${ciclo.NOME} data-hora-refeicao=${ciclo.HORA} data-qtd-refeicao=${ciclo.QTD}>`;
 	txtCiclo += '<div class="d-flex w-100 justify-content-between align-items-center">';
 	txtCiclo += `<h5 class="mb-1">${ciclo.NOME}</h5>`;
 	txtCiclo += `<small>${ciclo.HORA}</small>`;
@@ -58,6 +59,14 @@ function criaCiclo(ciclo) {
 	return txtCiclo;
 }
 
+function novoCiclo(nome, hora, qtd) {
+	
+//	refeicoes.Ciclos.
+	//$("#tabelaCiclos").html("");			
+//	insereLinhas(result);
+	//var ciclo = new JSON();
+	//ciclo.append
+}
 	
 // Usa AJAX pra só recarregar o botão que mudou
 function muda(sequencia) {
