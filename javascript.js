@@ -5,7 +5,19 @@ var refeicoes;
 // carrega primeira vez e configura página para recarregar automaticamente a cada 20s
 $(document).ready(function () {
 	limpaECarregaTabela();
-	setInterval(function () { limpaECarregaTabela(); }, 20000);
+	
+	$('#modalRefeicao').on('show.bs.modal', function (event) {
+  		var button = $(event.relatedTarget) // Button that triggered the modal
+		var nomeRefeicao = button.data('nome-refeicao')  		
+		var recipient = button.data('recipient') // Extract info from data-* attributes
+		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  		var modal = $(this)
+  		modal.find('.modal-title').text(nomeRefeicao)
+  		modal.find('.modal-body input').val(nomeRefeicao)
+	})
+	
+	//setInterval(function () { limpaECarregaTabela(); }, 20000);
 });
 
 
@@ -20,33 +32,20 @@ function limpaECarregaTabela() {
 	console.log(dataFormatada() + 'OK!');
 }
 
-
-//function novoCiclo() {
-//	$("#interruptoresRow").append(criaInterruptor(pagina.Dispo[numLinha]));
-//}
-
 function insereLinhas(result) {
 	refeicoes = JSON.parse(result);
 	var qtd = refeicoes.Ciclos.length;
 	
-	$("#tabelaCiclos").append("<button type='button' class='list-group-item list-group-item-action' data-toggle='modal'	data-target='#exampleModal' data-whatever='@mdo'>Novo</button>");
+	$("#tabelaCiclos").append("<a href='#' class='list-group-item list-group-item-action' data-toggle='modal'	data-target='#modalRefeicao' data-whatever='@mdo'>Novo</a>");
 	
 	for (var numLinha = 0; numLinha < qtd; numLinha++) {
 		$("#tabelaCiclos").append(criaCiclo(refeicoes.Ciclos[numLinha]));
 	}	
 }
 
-function criaCiclo(ciclo) {
-	
-/**
-
-		<button type="button" class="list-group-item list-group-item-action" data-toggle="modal"
-			data-target="#exampleModal" data-whatever="@mdo">Novo</button>								
-
-
- */	
-	
-	var txtCiclo = '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">';
+function criaCiclo(ciclo) {	
+	var txtCiclo = "<a href='#' class='list-group-item list-group-item-action flex-column align-items-start' ";
+	txtCiclo += `data-toggle='modal' data-target='#modalRefeicao' data-nome-refeicao=${ciclo.NOME}>`;
 	txtCiclo += '<div class="d-flex w-100 justify-content-between align-items-center">';
 	txtCiclo += `<h5 class="mb-1">${ciclo.NOME}</h5>`;
 	txtCiclo += `<small>${ciclo.HORA}</small>`;
@@ -56,7 +55,7 @@ function criaCiclo(ciclo) {
 	return txtCiclo;
 }
 
-
+	
 // Usa AJAX pra só recarregar o botão que mudou
 function muda(sequencia) {
 	console.log(dataFormatada() + 'clicou no botão de sequência ' + sequencia);
