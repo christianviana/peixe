@@ -4,8 +4,14 @@ var refeicoes;
 
 // carrega primeira vez e configura página para recarregar automaticamente a cada 20s
 $(document).ready(function () {
-	limpaECarregaTabela();
 	
+	buscaDadosCiclos();
+	preparaModal();	
+	//setInterval(function () { limpaECarregaTabela(); }, 20000);
+	
+});
+
+function preparaModal() {
 	$('#modalRefeicao').on('show.bs.modal', function (event) {
   		var button = $(event.relatedTarget) // Button that triggered the modal
 		var titulo = button.data('titulo')
@@ -21,32 +27,26 @@ $(document).ready(function () {
 		modal.find('#refeicao-qtd').val(qtdRefeicao)
 		modal.find('#refeicao-output').text(qtdRefeicao)		
 	})
-	
-	//setInterval(function () { limpaECarregaTabela(); }, 20000);
-});
+}
 
 
-function limpaECarregaTabela() {
+function buscaDadosCiclos() {
 	console.log(dataFormatada() + 'carregando dados...');
 	$.ajax({
-		url: paginaDeDados, success: function (result) {
-						
+		url: paginaDeDados, success: function (result) {						
 			refeicoes = JSON.parse(result);
-			insereLinhas(refeicoes);
+			limpaECarregaTabela(refeicoes);
 		}, cache: false
 	});
 	console.log(dataFormatada() + 'OK!');
 }
 
-function insereLinhas(refeicoes) {	
+function limpaECarregaTabela(refeicoes) {	
 	var qtd = refeicoes.Ciclos.length;
 	var ciclo;	
 	$("#tabelaCiclos").html("");
 	for (var numLinha = 0; numLinha < qtd; numLinha++) {
-		ciclo = refeicoes.Ciclos[numLinha];
-		//txtLinha = criaLinhaCiclo(ciclo.NOME, ciclo.HORA, ciclo.QTD);
-		//txtLinha.append($("#tabelaCiclos"));
-		
+		ciclo = refeicoes.Ciclos[numLinha];				
 		$("#tabelaCiclos").append(criaLinhaCiclo(ciclo.NOME, ciclo.HORA, ciclo.QTD));
 	}	
 }
@@ -66,35 +66,11 @@ function criaLinhaCiclo(nome, hora, qtd) {
 
 function novoCiclo(nome, hora, qtd) {
 	//alert('Inserir elemento novo: ' + nome.val() + " / " + hora.val() + " / " + qtd.val());
-	var tam = refeicoes.Ciclos.length;
-	$("#tabelaCiclos").html("");
+	var tam = refeicoes.Ciclos.length;	
 	refeicoes.Ciclos[tam] = {SEQ: tam, NOME: nome.val(), HORA: hora.val(), QTD: qtd.val()};
-	insereLinhas(refeicoes);
+	limpaECarregaTabela(refeicoes);
 }
 	
-// Usa AJAX pra só recarregar o botão que mudou
-function muda(sequencia) {
-	console.log(dataFormatada() + 'clicou no botão de sequência ' + sequencia);
-	var urlParaMudar = pagLigaLed + "?" + sequencia;
-	$(`#EspButton_${sequencia}`).toggleClass('imgPiscando');
-	$.ajax({
-		url: urlParaMudar, success: function (result) {
-			//$(`#EspButton_${sequencia}`).toggleClass('imgPiscando');
-			// Aqui é onde podem ser feitas as mudanças via Ajax para refletir a mudança de estado do LED no componente Web que o representar
-			console.log(dataFormatada() + 'resposta do clique no botão de sequência ' + sequencia + ': ' + result);
-			//var pagina = JSON.parse(result);
-			//var qtd = pagina.Dispo.length;
-			// Por segurança, só altera se o resultado tem apenas um dispositivo, e com o mesmo sequencial que foi enviado
-			//if (qtd === 1 && sequencia === pagina.Dispo[0].SEQ) {
-			//	$(`#Botao_${sequencia}`).replaceWith(criaInterruptor(pagina.Dispo[0]));
-		}
-	});
-	// Após ajustar o estado do LED, setta a página para recarregar em 0,5s, 
-	// para buscar novamente o estado do botão LED do servidor
-	// Este tempo pode ser necessário para que o estado se modifique no dispositivo remoto
-	setTimeout(function () { limpaECarregaTabela(); }, 2000);
-}
-
 function dataFormatada() {
 	var d = new Date();
 	var retorno = completaZerosEsquerda(d.getHours()) + ':';
