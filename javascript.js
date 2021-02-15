@@ -40,34 +40,42 @@ function limpaECarregaTabela() {
 function insereLinhas(result) {
 	refeicoes = JSON.parse(result);
 	var qtd = refeicoes.Ciclos.length;
-
+	var ciclo;	
 	for (var numLinha = 0; numLinha < qtd; numLinha++) {
-		$("#tabelaCiclos").append(criaLinhaCiclo(refeicoes.Ciclos[numLinha]));
+		ciclo = refeicoes.Ciclos[numLinha];
+		//txtLinha = criaLinhaCiclo(ciclo.NOME, ciclo.HORA, ciclo.QTD);
+		//txtLinha.append($("#tabelaCiclos"));
+		
+		$("#tabelaCiclos").append(criaLinhaCiclo(ciclo.NOME, ciclo.HORA, ciclo.QTD));
 	}	
 }
 
-function criaLinhaCiclo(ciclo) {	
+function criaLinhaCiclo(nome, hora, qtd) {	
 	var txtCiclo = "<a href='#' class='list-group-item list-group-item-action flex-column align-items-start' ";
 	txtCiclo += "data-dismiss='modal' data-toggle='modal' data-target='#modalRefeicao'";
-	txtCiclo += `data-nome-refeicao=${ciclo.NOME} data-titulo=${ciclo.NOME} data-hora-refeicao=${ciclo.HORA} data-qtd-refeicao=${ciclo.QTD}>`;
+	txtCiclo += `data-nome-refeicao=${nome} data-titulo=${nome} data-hora-refeicao=${hora} data-qtd-refeicao=${qtd}>`;
 	txtCiclo += '<div class="d-flex w-100 justify-content-between align-items-center">';
-	txtCiclo += `<h5 class="mb-1">${ciclo.NOME}</h5>`;
-	txtCiclo += `<small>${ciclo.HORA}</small>`;
-	txtCiclo += `<span class="badge badge-primary badge-pill">${ciclo.QTD}</span>`;
+	txtCiclo += `<h5 class="mb-1">${nome}</h5>`;
+	txtCiclo += `<small>${hora}</small>`;
+	txtCiclo += `<span class="badge badge-primary badge-pill">${qtd}</span>`;
 	txtCiclo += '</div>';
 	txtCiclo += '</a>';
 	return txtCiclo;
 }
 
-function novoCiclo(elemento) {
-	
+function novoCiclo(nome, hora, qtd) {
+//	var ciclo: Ciclo;
 //	refeicoes.Ciclos.
 	//$("#tabelaCiclos").html("");			
 //	insereLinhas(result);
 	//var ciclo = new JSON();
 	//ciclo.append	
 	
-	alert('Inserir elemento novo');
+	//alert('Inserir elemento novo: ' + nome.val() + " / " + hora.val() + " / " + qtd.val());
+//	ciclo.NOME = nome.val();
+	//ciclo.HORA = hora.val();
+	//ciclo.QTD= qtd.val();
+	$("#tabelaCiclos").append(criaLinhaCiclo(nome.val(), hora.val(), qtd.val()));
 	
 }
 	
