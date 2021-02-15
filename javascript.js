@@ -13,8 +13,9 @@ $(document).ready(function () {
 
 function preparaModal() {
 	$('#modalRefeicao').on('show.bs.modal', function (event) {
-  		var button = $(event.relatedTarget) // Button that triggered the modal
+  		var button = $(event.relatedTarget) // Button that triggered the modal		
 		var titulo = button.data('titulo')
+		var seqRefeicao = button.data('seq-refeicao')
 		var nomeRefeicao = button.data('nome-refeicao')  		
 		var qtdRefeicao = button.data('qtd-refeicao')
 		var horaRefeicao = button.data('hora-refeicao') // Extract info from data-* attributes
@@ -22,7 +23,8 @@ function preparaModal() {
   		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
   		var modal = $(this)
   		modal.find('.modal-title').text(titulo)
-		modal.find('#refeicao-nome').val(nomeRefeicao)	
+		modal.find('#refeicao-nome').val(nomeRefeicao)
+		modal.find('#refeicao-seq').val(seqRefeicao)		
   		modal.find('#refeicao-hora').val(horaRefeicao)
 		modal.find('#refeicao-qtd').val(qtdRefeicao)
 		modal.find('#refeicao-output').text(qtdRefeicao)		
@@ -47,14 +49,18 @@ function limpaECarregaTabela(refeicoes) {
 	$("#tabelaCiclos").html("");
 	for (var numLinha = 0; numLinha < qtd; numLinha++) {
 		ciclo = refeicoes.Ciclos[numLinha];				
-		$("#tabelaCiclos").append(criaLinhaCiclo(ciclo.NOME, ciclo.HORA, ciclo.QTD));
+		$("#tabelaCiclos").append(criaLinhaCiclo(ciclo.SEQ, ciclo.NOME, ciclo.HORA, ciclo.QTD));
 	}	
 }
 
-function criaLinhaCiclo(nome, hora, qtd) {	
+function criaLinhaCiclo(seq, nome, hora, qtd) {	
 	var txtCiclo = "<a href='#' class='list-group-item list-group-item-action flex-column align-items-start' ";
 	txtCiclo += "data-dismiss='modal' data-toggle='modal' data-target='#modalRefeicao'";
-	txtCiclo += `data-titulo=${nome+''} data-nome-refeicao=${nome} data-hora-refeicao=${hora} data-qtd-refeicao=${qtd}>`;
+	txtCiclo += " data-seq-refeicao=" + seq;	
+	txtCiclo += " data-titulo=" + nome;
+	txtCiclo += " data-nome-refeicao=" + nome;
+	txtCiclo += " data-hora-refeicao=" + hora; 
+	txtCiclo += " data-qtd-refeicao=" + qtd + ">";
 	txtCiclo += '<div class="d-flex w-100 justify-content-between align-items-center">';
 	txtCiclo += `<h5 class="mb-1">${nome}</h5>`;
 	txtCiclo += `<small>${hora}</small>`;
@@ -64,10 +70,14 @@ function criaLinhaCiclo(nome, hora, qtd) {
 	return txtCiclo;
 }
 
-function novoCiclo(nome, hora, qtd) {
+function novoCiclo(seq, nome, hora, qtd) {
 	//alert('Inserir elemento novo: ' + nome.val() + " / " + hora.val() + " / " + qtd.val());
+	seq = seq.val();
 	var tam = refeicoes.Ciclos.length;	
-	refeicoes.Ciclos[tam] = {SEQ: tam, NOME: nome.val(), HORA: hora.val(), QTD: qtd.val()};
+	if (seq == '') {
+		seq = tam;
+	}; 
+	refeicoes.Ciclos[seq] = {SEQ: seq, NOME: nome.val(), HORA: hora.val(), QTD: qtd.val()};
 	limpaECarregaTabela(refeicoes);
 }
 	
