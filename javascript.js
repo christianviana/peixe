@@ -30,17 +30,18 @@ function limpaECarregaTabela() {
 	console.log(dataFormatada() + 'carregando dados...');
 	$.ajax({
 		url: paginaDeDados, success: function (result) {
-			//$("#tabelaCiclos").html("");			
-			insereLinhas(result);
+						
+			refeicoes = JSON.parse(result);
+			insereLinhas(refeicoes);
 		}, cache: false
 	});
 	console.log(dataFormatada() + 'OK!');
 }
 
-function insereLinhas(result) {
-	refeicoes = JSON.parse(result);
+function insereLinhas(refeicoes) {	
 	var qtd = refeicoes.Ciclos.length;
 	var ciclo;	
+	$("#tabelaCiclos").html("");
 	for (var numLinha = 0; numLinha < qtd; numLinha++) {
 		ciclo = refeicoes.Ciclos[numLinha];
 		//txtLinha = criaLinhaCiclo(ciclo.NOME, ciclo.HORA, ciclo.QTD);
@@ -64,19 +65,11 @@ function criaLinhaCiclo(nome, hora, qtd) {
 }
 
 function novoCiclo(nome, hora, qtd) {
-//	var ciclo: Ciclo;
-//	refeicoes.Ciclos.
-	//$("#tabelaCiclos").html("");			
-//	insereLinhas(result);
-	//var ciclo = new JSON();
-	//ciclo.append	
-	
 	//alert('Inserir elemento novo: ' + nome.val() + " / " + hora.val() + " / " + qtd.val());
-//	ciclo.NOME = nome.val();
-	//ciclo.HORA = hora.val();
-	//ciclo.QTD= qtd.val();
-	$("#tabelaCiclos").append(criaLinhaCiclo(nome.val(), hora.val(), qtd.val()));
-	
+	var tam = refeicoes.Ciclos.length;
+	$("#tabelaCiclos").html("");
+	refeicoes.Ciclos[tam] = {SEQ: tam, NOME: nome.val(), HORA: hora.val(), QTD: qtd.val()};
+	insereLinhas(refeicoes);
 }
 	
 // Usa AJAX pra só recarregar o botão que mudou
