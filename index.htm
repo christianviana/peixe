@@ -24,18 +24,15 @@
 
 	<div class="container">
 		<h3 class="titulo"> <i class="fas fa-fish"></i> Alimenta Peixe</h3>
-		<p>Programe aqui a alimentação do seu peixe:</p>
-	
-		
-		<button type="button" class="btn btn-primary botao-novo" data-toggle="modal" data-target="#modalRefeicao"
-			data-titulo="Nova refeição" data-qtd-refeicao="5">Novo</button>
-		
-		
+		<h5>Programe aqui a alimentação do seu peixe</h5>	
+		 <div align="right">
+			<button type="button" class="btn btn-primary botao-novo" data-toggle="modal" data-target="#modalRefeicao"
+				data-titulo="Nova refeição" data-qtd-refeicao="5">+</button>
+		</div>				
 		<div class="list-group painel" id="tabelaCiclos"> </div>
-		
-		<button class="btn btn-primary" type="submit">Salvar</button>	
-
-
+		<div align="center">			
+			<button class="btn btn-primary" type="submit">Salvar</button>
+		</div>
 		<!-- Modal de criação de nova refeição -->
 		<div class="modal fade" id="modalRefeicao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">

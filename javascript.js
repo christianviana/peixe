@@ -53,7 +53,7 @@ function insereLinhas(result) {
 function criaLinhaCiclo(nome, hora, qtd) {	
 	var txtCiclo = "<a href='#' class='list-group-item list-group-item-action flex-column align-items-start' ";
 	txtCiclo += "data-dismiss='modal' data-toggle='modal' data-target='#modalRefeicao'";
-	txtCiclo += `data-nome-refeicao=${nome} data-titulo=${nome} data-hora-refeicao=${hora} data-qtd-refeicao=${qtd}>`;
+	txtCiclo += `data-titulo=${nome+''} data-nome-refeicao=${nome} data-hora-refeicao=${hora} data-qtd-refeicao=${qtd}>`;
 	txtCiclo += '<div class="d-flex w-100 justify-content-between align-items-center">';
 	txtCiclo += `<h5 class="mb-1">${nome}</h5>`;
 	txtCiclo += `<small>${hora}</small>`;
