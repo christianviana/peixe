@@ -3,8 +3,7 @@ var refeicoes;
 
 
 // carrega primeira vez e configura página para recarregar automaticamente a cada 20s
-$(document).ready(function () {
-	
+$(document).ready(function () {	
 	buscaDadosCiclos();
 	preparaModal();	
 	//setInterval(function () { limpaECarregaTabela(); }, 20000);
@@ -62,8 +61,7 @@ function criaLinhaCiclo(seq, nome, hora, qtd) {
 	txtCiclo += " data-hora-refeicao=" + hora; 
 	txtCiclo += " data-qtd-refeicao=" + qtd + ">";
 	txtCiclo += '<div class="d-flex w-100 justify-content-between align-items-center">';
-	txtCiclo += `<h5 class="mb-1">${nome}</h5>`;
-	txtCiclo += `<small>${hora}</small>`;
+	txtCiclo += `<p class="mb-1">${hora} - ${nome}</p>`;	
 	txtCiclo += `<span class="badge badge-primary badge-pill">${qtd}</span>`;
 	txtCiclo += '</div>';
 	txtCiclo += '</a>';
@@ -73,8 +71,10 @@ function criaLinhaCiclo(seq, nome, hora, qtd) {
 function novoCiclo(seq, nome, hora, qtd) {
 	//alert('Inserir elemento novo: ' + nome.val() + " / " + hora.val() + " / " + qtd.val());
 	seq = seq.val();
-	var tam = refeicoes.Ciclos.length;	
+	var tam = refeicoes.Ciclos.length;		
 	if (seq == '') {
+		// fazer esquema pra calcular o maior seq ao invés de pegar o tamanho do vetor
+		// pois com as exclusões, o maior pode ser maior que o tamanho do vetor 
 		seq = tam;
 	}; 
 	refeicoes.Ciclos[seq] = {SEQ: seq, NOME: nome.val(), HORA: hora.val(), QTD: qtd.val()};
