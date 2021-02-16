@@ -2,12 +2,10 @@ var paginaDeDados = "ciclos";
 var refeicoes;
 
 
-// carrega primeira vez e configura página para recarregar automaticamente a cada 20s
+// carrega dados e preenche página
 $(document).ready(function () {	
 	buscaDadosCiclos();
-	preparaModal();	
-	//setInterval(function () { limpaECarregaTabela(); }, 20000);
-	
+	preparaModal();		
 });
 
 function preparaModal() {
@@ -77,6 +75,7 @@ function novoCiclo(seq, nome, hora, qtd) {
 		// pois com as exclusões, o maior pode ser maior que o tamanho do vetor 
 		seq = tam;
 	}; 
+	// não está editando o nome?
 	refeicoes.Ciclos[seq] = {SEQ: seq, NOME: nome.val(), HORA: hora.val(), QTD: qtd.val()};
 	limpaECarregaTabela(refeicoes);
 }
