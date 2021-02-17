@@ -1,5 +1,6 @@
 var paginaDeDados = "ciclos";
 var refeicoes;
+var modificado = false;
 
 
 // carrega dados e preenche página
@@ -55,6 +56,7 @@ function limpaCiclos() {
 	if (confirm("Tem certeza que deseja limpar todas as refeições?")) {
 		refeicoes.Ciclos.splice(0,refeicoes.Ciclos.length);
 		limpaECarregaTabela(refeicoes);
+		modificado=true;
 	}
 		
 }
@@ -78,6 +80,7 @@ function criaLinhaCiclo(seq, nome, hora, qtd) {
 function salvar(){
 	$("#resultado").val(JSON.stringify(refeicoes));
 	$("#meuForm").submit();
+	modificado=false;
 }
 
 function novoCiclo(seq, nome, hora, qtd) {
@@ -89,7 +92,8 @@ function novoCiclo(seq, nome, hora, qtd) {
 	if (nome == '' || hora == '') {		
 		$('#alerta-faltam-dados').show();	
 	}
-	else {		
+	else {
+		modificado=true;		
 		if (seq == '') {
 			// calcula o maior seq ao invés de pegar o tamanho do vetor
 			// pois com as exclusões, o maior pode ser maior que o tamanho do vetor 
@@ -104,12 +108,23 @@ function novoCiclo(seq, nome, hora, qtd) {
 	}
 }
 
+function voltar() {
+	if (modificado) {
+		if (confirm('ATENÇÃO! Todas as modificações não salvas serão perdidas. Deseja continuar?')) {
+			window.location.href = 'index.htm';
+		}	
+	} else {
+		window.location.href = 'index.htm';
+	}
+}
+
 function removeCiclo(seq) {	
 	seq = seq.val();
 	pos = encontraPosicaoSeq(seq);
 	if (seq!='') {
-		if(confirm('Tem certeza que deseja excluir?')) {
+		if(confirm('Tem certeza que deseja excluir?')) {		
 		refeicoes.Ciclos.splice(pos, 1);
+		modificado=true;
 		limpaECarregaTabela(refeicoes);
 		}	
 	}
