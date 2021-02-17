@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+
+	<title>Alimenta Peixe</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+
+	<!--================( FOLHA DE ESTILO CSS PARA O BOOTSTRAP )================-->
+	<link href="bootstrap-4.1.3.min.css" rel="stylesheet">
+	<!--=====================(    FOLHA DE ESTILO CSS     )=====================-->
+	<link href="estilo.css" rel="stylesheet">	
+	<!--=============( IMPORTAÇÃO DA FONTE AWESOME PARA OS ÍCONES   )===========-->
+	<script src="https://kit.fontawesome.com/c72e8f35d2.js"></script>
+</head>
+
+<body>
+
+	<div class="container">
+		
+		<div class="titulo">
+ 			<h3> <i class="fas fa-fish"></i> Alimenta Peixe</h3> 
+			<h6>Programe aqui a alimentação do seu peixe</h6> 	
+		</div>
+		
+		<div class="alert alert-warning alert-dismissible fade show" role="alert" id="alerta-faltam-dados">
+		  <strong>Não foi possível inserir a nova refeição.</strong> Nome e hora devem ser informados.
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		 <div align="right">
+			<button type="button" class="btn btn-primary btn-novo" data-toggle="modal" data-target="#modalRefeicao"
+				data-titulo="Nova refeição" data-qtd-refeicao="5">+</button>
+		</div>				
+
+		<div class="list-group painel" id="tabelaCiclos"> </div> 
+
+		<div align="center">			
+			<form id="meuForm" method="post" action="ciclos" >
+			<input type="hidden" id="resultado"/>
+			<button class="btn btn-danger" type="reset" onclick="limpaCiclos()">Limpar</button>
+			<button class="btn btn-primary" type="submit" onclick="salvar()")>Salvar</button>
+			</form>
+		</div>
+		
+		
+		
+		<!-- Modal de criação de nova refeição -->
+		<div class="modal fade" id="modalRefeicao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="refeicao-titulo">Nova refeição</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form>
+							<input type="hidden" id="refeicao-seq">
+							<div class="form-group">
+								<label for="refeicao-nome" class="col-form-label">Nome da refeição:</label>								
+								<input type="text" class="form-control" id="refeicao-nome" onkeyup="$('#refeicao-titulo').text($('#refeicao-nome').val())">
+							</div>
+							<div class="form-group">
+								<label for="refeicao-hora" class="col-form-label">Horário:</label>
+								<input type="time" class="form-control" id="refeicao-hora"></input>
+							</div>
+							<div class="form-group">
+								<label for="refeicao-qtd" class="col-form-label">Quantidade: <span
+										id="refeicao-output"></span></label>
+								<input type="range" min="1" max="10" value="2" class="form-control"
+									id="refeicao-qtd"></input>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="removeCiclo($('#refeicao-seq'))"><i
+								class="fas fa-trash"></i></button>
+						<button type="button" class="btn btn-primary"  data-dismiss="modal" onclick="novoCiclo($('#refeicao-seq'),$('#refeicao-nome'),$('#refeicao-hora'),$('#refeicao-qtd'));"><i class="fas fa-check"></i> OK</button>
+					</div>
+				</div>
+			</div>
+			<script>
+				var slider = document.getElementById("refeicao-qtd");
+				var output = document.getElementById("refeicao-output");
+				output.innerHTML = slider.value;
+				slider.oninput = function () {
+					output.innerHTML = this.value;
+				}
+			</script>
+		</div>
+	</div>
+
+	<!--=======================(  INCLUI BIBLIOTECA Jquery  )=====================-->
+	<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+	<!--=======================(  INCLUI JAVASCRIPT  )=====================-->
+	<script type="text/javascript" src="programar.js"></script>
+	<!--====================(  INCLUI BIBLIOTECA BOOTSTRAP )====================-->
+	<script type="text/javascript" src="bootstrap-4.1.3.min.js"></script>
+
+
+</body>
+
+</html>
