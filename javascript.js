@@ -79,6 +79,13 @@ function novoCiclo(seq, nome, hora, qtd) {
 	refeicoes.Ciclos[seq] = {SEQ: seq, NOME: nome.val(), HORA: hora.val(), QTD: qtd.val()};
 	limpaECarregaTabela(refeicoes);
 }
+
+function removeCiclo(seq) {
+	refeicoes.Ciclos.splice(seq.val(), 1);
+	limpaECarregaTabela(refeicoes);
+}
+
+
 	
 function dataFormatada() {
 	var d = new Date();
