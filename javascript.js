@@ -50,6 +50,12 @@ function limpaECarregaTabela(refeicoes) {
 	}	
 }
 
+function limpaCiclos() {
+	refeicoes.Ciclos.splice(0,refeicoes.Ciclos.length);
+	limpaECarregaTabela(refeicoes);
+		
+}
+
 function criaLinhaCiclo(seq, nome, hora, qtd) {	
 	var txtCiclo = "<a href='#' class='list-group-item list-group-item-action flex-column align-items-start' ";
 	txtCiclo += "data-dismiss='modal' data-toggle='modal' data-target='#modalRefeicao'";
