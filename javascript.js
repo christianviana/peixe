@@ -5,7 +5,8 @@ var refeicoes;
 // carrega dados e preenche página
 $(document).ready(function () {	
 	buscaDadosCiclos();
-	preparaModal();		
+	preparaModal();	
+	$('#alerta-faltam-dados').hide();	
 });
 
 function preparaModal() {
@@ -51,8 +52,10 @@ function limpaECarregaTabela(refeicoes) {
 }
 
 function limpaCiclos() {
-	refeicoes.Ciclos.splice(0,refeicoes.Ciclos.length);
-	limpaECarregaTabela(refeicoes);
+	if (confirm("Tem certeza que deseja limpar todas as refeições?")) {
+		refeicoes.Ciclos.splice(0,refeicoes.Ciclos.length);
+		limpaECarregaTabela(refeicoes);
+	}
 		
 }
 
@@ -79,26 +82,35 @@ function salvar(){
 
 function novoCiclo(seq, nome, hora, qtd) {
 	seq = seq.val();
-	var tam = refeicoes.Ciclos.length;		
-	if (seq == '') {
-		// calcula o maior seq ao invés de pegar o tamanho do vetor
-		// pois com as exclusões, o maior pode ser maior que o tamanho do vetor 
-		seq = encontraMaior()+1;
-		pos=tam;
-	} else {
-		pos = encontraPosicaoSeq(seq);
-		seq = parseInt(seq, 10);				
-	}; 
-	// não está editando o nome?
-	refeicoes.Ciclos[pos] = {SEQ: seq, NOME: nome.val(), QTD: parseInt(qtd.val(), 10), HORA: hora.val()};
-	limpaECarregaTabela(refeicoes);
+	nome = nome.val();
+	hora = hora.val();
+	qtd = qtd.val();	
+	var tam = refeicoes.Ciclos.length;
+	if (nome == '' || hora == '') {		
+		$('#alerta-faltam-dados').show();	
+	}
+	else {		
+		if (seq == '') {
+			// calcula o maior seq ao invés de pegar o tamanho do vetor
+			// pois com as exclusões, o maior pode ser maior que o tamanho do vetor 
+			seq = encontraMaior()+1;
+			pos=tam;
+		} else {
+			pos = encontraPosicaoSeq(seq);
+			seq = parseInt(seq, 10);				
+		} 
+		refeicoes.Ciclos[pos] = {SEQ: seq, NOME: nome, QTD: parseInt(qtd, 10), HORA: hora};
+		limpaECarregaTabela(refeicoes);
+	}
 }
 
 function removeCiclo(seq) {
 	seq = seq.val();
 	pos = encontraPosicaoSeq(seq);
-	refeicoes.Ciclos.splice(pos, 1);
-	limpaECarregaTabela(refeicoes);
+	if (seq!='') {
+		refeicoes.Ciclos.splice(pos, 1);
+		limpaECarregaTabela(refeicoes);	
+	}
 }
 
 function encontraMaior(){
