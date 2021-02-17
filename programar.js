@@ -104,12 +104,14 @@ function novoCiclo(seq, nome, hora, qtd) {
 	}
 }
 
-function removeCiclo(seq) {
+function removeCiclo(seq) {	
 	seq = seq.val();
 	pos = encontraPosicaoSeq(seq);
 	if (seq!='') {
+		if(confirm('Tem certeza que deseja excluir?')) {
 		refeicoes.Ciclos.splice(pos, 1);
-		limpaECarregaTabela(refeicoes);	
+		limpaECarregaTabela(refeicoes);
+		}	
 	}
 }
 
