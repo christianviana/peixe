@@ -67,24 +67,52 @@ function criaLinhaCiclo(seq, nome, hora, qtd) {
 }
 
 function novoCiclo(seq, nome, hora, qtd) {
-	//alert('Inserir elemento novo: ' + nome.val() + " / " + hora.val() + " / " + qtd.val());
 	seq = seq.val();
 	var tam = refeicoes.Ciclos.length;		
 	if (seq == '') {
-		// fazer esquema pra calcular o maior seq ao invés de pegar o tamanho do vetor
+		// calcula o maior seq ao invés de pegar o tamanho do vetor
 		// pois com as exclusões, o maior pode ser maior que o tamanho do vetor 
-		seq = tam;
+		seq = encontraMaior()+1;
+		pos=tam;
+	} else {
+		pos = encontraPosicaoSeq(seq);
+		seq = parseInt(seq, 10);				
 	}; 
 	// não está editando o nome?
-	refeicoes.Ciclos[seq] = {SEQ: seq, NOME: nome.val(), HORA: hora.val(), QTD: qtd.val()};
+	refeicoes.Ciclos[pos] = {SEQ: seq, NOME: nome.val(), QTD: parseInt(qtd.val(), 10), HORA: hora.val()};
 	limpaECarregaTabela(refeicoes);
 }
 
 function removeCiclo(seq) {
-	refeicoes.Ciclos.splice(seq.val(), 1);
+	seq = seq.val();
+	pos = encontraPosicaoSeq(seq);
+	refeicoes.Ciclos.splice(pos, 1);
 	limpaECarregaTabela(refeicoes);
 }
 
+function encontraMaior(){
+	var qtd = refeicoes.Ciclos.length;
+	var ciclo;	
+	var maior = 0;
+	for (var numLinha = 0; numLinha < qtd; numLinha++) {
+		ciclo = refeicoes.Ciclos[numLinha];
+		if (ciclo.SEQ > maior) {
+			maior = ciclo.SEQ; 
+		}					
+	}	
+	return maior;
+}
+
+function encontraPosicaoSeq(seq){
+	var qtd = refeicoes.Ciclos.length;
+	var ciclo;		
+	for (var numLinha = 0; numLinha < qtd; numLinha++) {
+		ciclo = refeicoes.Ciclos[numLinha];
+		if (ciclo.SEQ == seq) {
+			return numLinha; 
+		}					
+	}		
+}
 
 	
 function dataFormatada() {
