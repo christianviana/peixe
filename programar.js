@@ -30,7 +30,6 @@ function preparaModal() {
 	})
 }
 
-// ver problema de não aparecer mais dialog depois que fecho a 1a vez
 function buscaDadosCiclos() {
 	console.log(dataFormatada() + 'Carregando dados dos ciclos...');
 	$.ajax({
