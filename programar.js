@@ -6,8 +6,7 @@ var modificado = false;
 // carrega dados e preenche página
 $(document).ready(function () {	
 	buscaDadosCiclos();
-	preparaModal();	
-	$('#alerta-faltam-dados').hide();	
+	preparaModal();		
 });
 
 function preparaModal() {
@@ -26,11 +25,12 @@ function preparaModal() {
 		modal.find('#refeicao-seq').val(seqRefeicao)		
   		modal.find('#refeicao-hora').val(horaRefeicao)
 		modal.find('#refeicao-qtd').val(qtdRefeicao)
-		modal.find('#refeicao-output').text(qtdRefeicao)		
+		modal.find('#refeicao-output').text(qtdRefeicao)	
+		$('#alerta-faltam-dados').hide();	
 	})
 }
 
-
+// ver problema de não aparecer mais dialog depois que fecho a 1a vez
 function buscaDadosCiclos() {
 	console.log(dataFormatada() + 'carregando dados...');
 	$.ajax({
@@ -105,6 +105,7 @@ function novoCiclo(seq, nome, hora, qtd) {
 		} 
 		refeicoes.Ciclos[pos] = {SEQ: seq, NOME: nome, QTD: parseInt(qtd, 10), HORA: hora};
 		limpaECarregaTabela(refeicoes);
+		$('#modalRefeicao').modal('toggle');
 	}
 }
 
