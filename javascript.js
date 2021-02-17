@@ -72,6 +72,11 @@ function criaLinhaCiclo(seq, nome, hora, qtd) {
 	return txtCiclo;
 }
 
+function salvar(){
+	$("#resultado").val(JSON.stringify(refeicoes));
+	$("#meuForm").submit();
+}
+
 function novoCiclo(seq, nome, hora, qtd) {
 	seq = seq.val();
 	var tam = refeicoes.Ciclos.length;		
