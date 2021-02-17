@@ -19,3 +19,7 @@
 	margin-bottom: 15px;;
 }
 
+.container {
+    max-width: 480px;
+}
+
