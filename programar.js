@@ -32,14 +32,14 @@ function preparaModal() {
 
 // ver problema de não aparecer mais dialog depois que fecho a 1a vez
 function buscaDadosCiclos() {
-	console.log(dataFormatada() + 'carregando dados...');
+	console.log(dataFormatada() + 'Carregando dados dos ciclos...');
 	$.ajax({
 		url: paginaDeDados, success: function (result) {						
 			refeicoes = JSON.parse(result);
 			limpaECarregaTabela(refeicoes);
 		}, cache: false
 	});
-	console.log(dataFormatada() + 'OK!');
+	console.log(dataFormatada() + 'Dados dos ciclos - OK!');
 }
 
 function limpaECarregaTabela(refeicoes) {	

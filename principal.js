@@ -10,14 +10,14 @@ $(document).ready(function () {
 });
 
 function buscaDadosStatus() {
-	console.log(dataFormatada() + 'carregando dados...');
+	console.log(dataFormatada() + 'Carregando dados de status...');
 	$.ajax({
 		url: paginaDeDados, success: function (result) {						
 			dadosStatus = JSON.parse(result);
 			limpaECarregaTabela(dadosStatus);
 		}, cache: false
 	});
-	console.log(dataFormatada() + 'OK!');
+	console.log(dataFormatada() + 'Dados de status - OK!');
 }
 
 function limpaECarregaTabela(dadosStatus) {	
