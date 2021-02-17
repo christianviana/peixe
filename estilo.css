@@ -12,14 +12,14 @@
 
 .btn-novo {
 	font-size: 1.0rem;	
-	padding-bottom: 0px;
-	
+	padding-bottom: 4px;
+	padding-right: 14px;	
 }
 
 .btn-apagar {
 	color: red;	
-	padding-bottom: 0px;
-	padding-right: 0px;
+	padding-bottom: 4px;
+	padding-right: 10px;
 }
 
 
