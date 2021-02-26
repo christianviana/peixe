@@ -6,8 +6,44 @@ var dadosStatus;
 // configura página para recarregar automaticamente a cada 20s
 $(document).ready(function () {	
 	buscaDadosStatus();
-	setInterval(function () { buscaDadosStatus(); }, 20000);
+	setInterval(function () { buscaDadosStatus(); }, 20000);	
+	checaAlimentado();	
 });
+
+function alimenta() {
+	if (confirm("Tem certeza que deseja realizar uma alimentação manual agora?")) {
+		window.location = "manual"
+	}	
+
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function checaAlimentado() {
+	var alimentado=getCookie("alimentado");
+	if (alimentado == "true") {
+    	alert("Seu peixe foi alimentado com sucesso!");
+		deleteCookie("alimentado");			
+	}          	
+}
+
+function deleteCookie(cname) {
+  document.cookie = cname + "=\"false\"";
+}
 
 function buscaDadosStatus() {
 	console.log(dataFormatada() + 'Carregando dados de status...');
