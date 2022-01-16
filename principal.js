@@ -10,8 +10,8 @@ $(document).ready(function () {
 	checaAlimentado();	
 });
 
-function alimenta() {
-	if (confirm("Tem certeza que deseja realizar uma alimentação manual agora?")) {
+function alimenta(valor) {
+	if (confirm("Tem certeza que deseja realizar uma alimentação manual de " + valor.val() + " agora?")) {
 		window.location = "manual.htm"
 	}	
 

@@ -29,7 +29,13 @@
 		</div>
 
 		<div align="center">			
-			<button class="btn btn-info btn-lg btn-block")  onclick="alimenta()"><i class="fas fa-drumstick-bite"></i> Manual</button>
+			<button class="btn btn-info btn-lg btn-block")  onclick="alimenta($('#refeicao-qtd'))">
+				<i class="fas fa-drumstick-bite"></i> 
+				Alimentação manual: <span id="refeicao-output"></span>				
+			</button>
+			<div class="alimenta-manual">
+				<input class="slider-alimenta-manual" type="range" min="1" max="100" value="5" id="refeicao-qtd"></input>
+			</div>						
 		</div>
 
 		<div class="list-group painel-principal" id="tabela-status"> 
@@ -60,6 +66,15 @@
 		</div>
 				
 	</div>
+
+	<script>
+		var slider = document.getElementById("refeicao-qtd");
+		var output = document.getElementById("refeicao-output");
+		output.innerHTML = slider.value;
+		slider.oninput = function () {
+			output.innerHTML = this.value;
+		}
+	</script>
 
 	<!--=======================(  INCLUI BIBLIOTECA Jquery  )=====================-->
 	<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
