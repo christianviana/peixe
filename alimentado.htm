@@ -3,7 +3,9 @@
 
 <head>
 
-	<script>	
+	<script>
+	urlParams = new URLSearchParams(window.location.search);	
+	document.cookie = "qtdAlimentacao=" + urlParams.get('qtdeManual');
 	document.cookie = "alimentado=true";
 	window.location = "index.htm"
 	</script>
