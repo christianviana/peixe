@@ -12,7 +12,7 @@ $(document).ready(function () {
 
 function alimenta(valor) {
 	if (confirm("Tem certeza que deseja realizar uma alimentação manual de " + valor.val() + " agora?")) {
-		window.location = "manual.htm"
+		window.location = "manual.htm?qtdeManual="+valor.val();	
 	}	
 
 }
