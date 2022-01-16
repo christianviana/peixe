@@ -34,12 +34,10 @@ function getCookie(cname) {
 }
 
 function checaAlimentado() {
-	var alimentado=getCookie("alimentado");
-	var qtdAlimentado=getCookie("qtdAlimentacao");
+	var alimentado=getCookie("alimentado");	
 	if (alimentado == "true") {
-    	alert("Seu peixe foi alimentado com quantidade de " + qtdAlimentado + "!");
+    	alert("Seu peixe foi alimentado com sucesso!");
 		deleteCookie("alimentado");			
-		deleteCookie("qtdAlimentacao");
 	}          	
 }
 
