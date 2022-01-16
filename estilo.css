@@ -75,6 +75,7 @@
   appearance: none;
   width: 25px;
   height: 25px;
+  outline: none;
   background: #04EEFD;
   cursor: pointer;
 }
@@ -84,6 +85,7 @@
   height: 25px;
   background: #04AA6D;
   cursor: pointer;
+  outline: none;
 }
 
 
